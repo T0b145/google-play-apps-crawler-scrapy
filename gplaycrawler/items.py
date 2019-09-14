@@ -1,14 +1,23 @@
+# -*- coding: utf-8 -*-
+
 # Define here the models for your scraped items
 #
 # See documentation in:
-# http://doc.scrapy.org/topics/items.html
+# https://docs.scrapy.org/en/latest/topics/items.html
 
-#from scrapy.item import Item, Field
 import scrapy
+
+from scrapy import Item, Field
+
+class DynamicItem(Item):
+    def __setitem__(self, key, value):
+        self._values[key] = value
+        self.fields[key] = {}
+
 
 class GplaycrawlerItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = Field()
+    # name = scrapy.Field()
     Link = scrapy.Field()
     Item_name = scrapy.Field()
     Updated = scrapy.Field()
@@ -30,5 +39,5 @@ class GplaycrawlerItem(scrapy.Item):
     Physical_address = scrapy.Field()
     Video_URL = scrapy.Field()
     Developer_ID = scrapy.Field()
-
-
+    Age_restriction = scrapy.Field()
+    pass

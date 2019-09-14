@@ -1,0 +1,79 @@
+Helpfull comands:
+
+Export to json:
+mongoexport --db google_play_store --collection scrapy_items --out export.json --jsonArray
+
+Run Crawler:
+scrapy crawl gplay -L WARNING -s JOBDIR=crawls/gplay-1
+
+Using Screen:
+screen -r = Returns to last session
+ctrl +a and then press d to leave session
+
+
+Google Categories:
+
+Autos & Fahrzeuge
+Beauty
+Bücher & Nachschlagewerke
+Büro
+Comics
+Dating
+Effizienz
+Eltern
+Essen & Trinken
+Finanzen
+Fotografie
+Gesundheit & Fitness
+Haus & Garten
+Karten & Navigation
+Kommunikation
+Kunst & Design
+Lernen
+Lifestyle
+Medizin
+Musik & Audio
+Nachrichten & Zeitschriften
+Personalisierung
+Reisen & Lokales
+Shopping
+Software & Demos
+Soziale Netzwerke
+Sport
+Tickets & Events
+Tools
+Unterhaltung
+Videoplayer & Editors
+Wear OS by Google
+Wetter
+
+
+	Spiele
+Abenteuer
+Action
+Arcade
+Brettspiele
+Casino
+Geduldsspiele
+Gelegenheitsspiele
+Kartenspiele
+Lernspiele
+Musik
+Quizspiele
+Rennsport
+Rollenspiele
+Simulation
+Sportspiele
+Strategie
+Worträtsel
+
+	Familie
+5 Jahre und jünger
+6 bis 8 Jahre
+Ab 9 Jahren
+Action & Abenteuer
+Bildung
+Denkspiele
+Kreativität
+Musik & Videos
+Rollenspiele
