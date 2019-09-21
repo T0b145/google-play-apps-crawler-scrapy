@@ -46,7 +46,7 @@ class MySpider(CrawlSpider):
           item["Price"] = float(page.xpath("//meta[@itemprop='price']/@content").get().split()[0].replace(",","."))
       except:
           item["Price"] = None
-          
+
       try:
           item["Rating_value"] = float(page.css('div[class=BHMmbe] ::text').get().replace(",","."))
           item["Review_number"] = int(page.css('span[class="AYi5wd TBRnV"] ::text').get().replace(".",""))#updated
@@ -56,7 +56,7 @@ class MySpider(CrawlSpider):
 
       Additional_Informations = page.css('div[class=hAyfc]')
       for ad in Additional_Informations:
-          title_ad = ad.css('div[class=BgcNfc] ::text').get()
+          title_ad = ad.css('div[class=BgcNfc] ::text').get().replace("-","_")
           text_ad = ad.css('div[class=IQ1z0d] ::text').getall()
           GplaycrawlerItem.title_ad = scrapy.Field()
           item[title_ad] = text_ad

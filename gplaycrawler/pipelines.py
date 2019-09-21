@@ -7,8 +7,9 @@
 
 import json
 import pymongo
+import dataset
 
-class GplaycrawlerPipeline(object):
+class JsonPipeline(object):
     def open_spider(self, spider):
         self.file = open('items.jl', 'w')
 
@@ -22,27 +23,53 @@ class GplaycrawlerPipeline(object):
 
 
 class MongoPipeline(object):
-
     collection_name = 'scrapy_items'
-
-    def __init__(self, mongo_uri, mongo_db):
-        self.mongo_uri = mongo_uri
-        self.mongo_db = mongo_db
+    def __init__(self, uri, db):
+        self.uri = uri
+        self.db = db
 
     @classmethod
     def from_crawler(cls, crawler):
         return cls(
-            mongo_uri=crawler.settings.get('MONGO_URI'),
-            mongo_db=crawler.settings.get('MONGO_DATABASE', 'items')
+            uri=crawler.settings.get('URI'),
+            db=crawler.settings.get('DATABASE', 'items')
         )
 
     def open_spider(self, spider):
-        self.client = pymongo.MongoClient(self.mongo_uri)
-        self.db = self.client[self.mongo_db]
+        self.client = pymongo.MongoClient(self.uri)
+        self.db = self.client[self.db]
 
     def close_spider(self, spider):
         self.client.close()
 
     def process_item(self, item, spider):
         self.db[self.collection_name].insert_one(dict(item))
+        return item
+
+
+class MySQLPipeline(object):
+    def __init__(self, uri, db):
+        self.uri = uri
+        self.db = db
+        self.user = "scrapy"
+        self.password = "scrapy"
+        self.table_name = 'scrapy_items'
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            uri=crawler.settings.get('URI'),
+            db=crawler.settings.get('DATABASE', 'items')
+        )
+
+    def open_spider(self, spider):
+        self.db = dataset.connect('postgresql://{}:{}@{}:5432/{}'.format(self.user,self.password,self.uri,self.db))
+        self.table = self.db[self.table_name]
+
+    def close_spider(self, spider):
+        print ("Spider Closed")
+
+    def process_item(self, item, spider):
+        #self.table.insert({"test":"test"})
+        self.table.insert(dict(item))
         return item

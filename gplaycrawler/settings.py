@@ -15,8 +15,8 @@ SPIDER_MODULES = ['gplaycrawler.spiders']
 NEWSPIDER_MODULE = 'gplaycrawler.spiders'
 DEPTH_LIMIT = 0
 
-MONGO_URI = "localhost"
-MONGO_DATABASE = "google_play_store"
+URI = "localhost"
+DATABASE = "google_play_store"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -69,7 +69,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'gplaycrawler.pipelines.MongoPipeline': 300,
+   'gplaycrawler.pipelines.MySQLPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
