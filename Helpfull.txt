@@ -4,7 +4,7 @@ Export to json:
 mongoexport --db google_play_store --collection scrapy_items --out export.json --jsonArray
 
 Run Crawler:
-scrapy crawl gplay -L INFO -s JOBDIR=crawls/gplay-2 --logfile crawls/gplay-2/Log.txt
+scrapy crawl gplay -L INFO -s JOBDIR=crawls/gplay-2
 
 Using Screen:
 screen -r = Returns to last session
